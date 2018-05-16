@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/css/device.css"/>
+</head>
+<body>
+    <h2>取所有设备</h2>
+    分页数：
+    <select id="allDev_paging">
+        <option value="10">每页10条</option>
+        <option value="20">每页20条</option>
+        <option value="50">每页50条</option>
+    </select>
+    <select id="allDev_page">
+        <option value="1">第1页</option>
+    </select>
+    <input type="button" id="allDev_button" value="刷新" onclick="deviceGetAll()"/><br/>
+    <table border="1" id="allDev_table">
+
+    </table>
+    <hr/>
+
+    <h2>操作设备</h2>
+    IMEI：<input type="text" placeholder="imei" id="set_imei_input"/><br/>
+    <input class="but" type="button" value="取状态" onclick="deviceState('query')"/><br/>
+    <input class="but" type="button" value="通过审核" onclick="deviceState('sh')"/>
+    <!--
+    <input class="but" type="button" value="不通过审核" onclick="deviceState('sh_')"/><br/>
+    <input class="but" type="button" value="启用设备" onclick="deviceState('qy')"/>
+    <input class="but" type="button" value="禁用设备" onclick="deviceState('jy')"/><br/>
+    <input class="but" type="button" value="解锁设备" onclick="deviceState('js')"/>
+    <input class="but" type="button" value="锁定设备" onclick="deviceState('sd')"/><br/>
+    -->
+    <input class="but" type="button" value="内容有更新" onclick="deviceState('up')"/>
+    <hr/>
+
+    <h2>向平台增加内容</h2>
+    <form method="post" enctype="multipart/form-data" class="form" action="{:url('addInfoToSys')}">
+        内容名称：<input type="text" name="infoName" placeholder="烈火战车"/><br/>
+        内容类型：<input type="text" name="infoType" placeholder="mp4"/><br/>
+        内容地址：<input type="text" name="infoHref" placeholder="http://www.vrfeng.me/video/lhzc.mp4"/><br/>
+        <input type="submit" class="but" value="添加内容">
+    </form>
+    <hr/>
+
+    <h2>注册用户</h2>
+    <form method="post" enctype="multipart/form-data" class="form" action="{:url('regeditUser')}">
+        用户名称：<input type="text" name="userName" placeholder="my"/><br/>
+        用户密码：<input type="password" name="userPwd" placeholder="admin"/><br/>
+        用户邮箱：<input type="text" name="userEmail" placeholder="123@126.com"/><br/>
+        <input type="submit" class="but" value="注册用户">
+    </form>
+    <hr/>
+
+    <h2>绑定设备</h2>
+    <form method="post" enctype="multipart/form-data" class="form" action="{:url('bindDevice')}">
+        用户名称：<input type="text" name="userName"/><br/>
+        用户密码：<input type="password" name="userPwd"/><br/>
+        设备标识：<input type="text" name="devID"/><br/>
+        <input type="submit" class="but" value="绑定设备">
+    </form>
+    <hr/>
+
+    <h2>购买内容</h2>
+    <form method="post" enctype="multipart/form-data" class="form" action="{:url('buy')}">
+        用户名称：<input type="text" name="userName"/><br/>
+        用户密码：<input type="password" name="userPwd"/><br/>
+        内容编码：<input type="text" name="infoID"/><br/>
+        <input type="submit" class="but" value="购买内容">
+    </form>
+    <hr/>
+
+    <h2>下载到设备</h2>
+    <form method="post" enctype="multipart/form-data" class="form" action="{:url('infoToDev')}">
+        用户名称：<input type="text" name="userName"/><br/>
+        用户密码：<input type="password" name="userPwd"/><br/>
+        设备编码：<input type="text" name="imei"/><br/>
+        内容编码：<input type="text" name="infoID"/><br/>
+        <input type="submit" class="but" value="下载到设备">
+    </form>
+    <hr/>
+
+    <h2>查用户详情</h2>
+        用户名称：<input type="text" id="info_userName"/><br/>
+        用户密码：<input type="password" id="info_userPwd"/><br/>
+        <input type="button" value="查询" onclick="catUserInfo()"/>
+        <div id="userNameInfo">
+
+        </div>
+    <hr/>
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/device.js"></script>
+</html>
